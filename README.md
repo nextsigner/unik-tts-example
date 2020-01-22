@@ -13,7 +13,6 @@ En principio este proyecto està configurado para estar conectado full time a la
 
 ## Màs informaciòn
 
-* Dentro de la sala de chat LWP Qt que veràs en èste mòdulo.
 * Twitter: @nextsigner
 * E-Mail: nextsigner@gmail.com
 * Whatsapp: +54 11 3802 4370
