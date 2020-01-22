@@ -96,7 +96,7 @@ ApplicationWindow{
                 spacing: app.fs
                 anchors.horizontalCenter: parent.horizontalCenter
                 Text{
-                    text:'<b>Unik '+Qt.platform.os.toUpperCase()+' Text2Voice Example</b>'
+                    text:'<b>Unik '+Qt.platform.os.toUpperCase()+' Text to Speech Example</b>'
                     font.pixelSize: app.fs*1.4
                     color: 'white'
                     anchors.horizontalCenter: parent.horizontalCenter
