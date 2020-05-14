@@ -8,6 +8,7 @@ import QtQuick.Controls 2.0
 import QtQuick.Window 2.0
 import Qt.labs.settings 1.0
 import unik.UnikQProcess 1.0
+import "qrc:/"
 ApplicationWindow{
     id:app
     visible: true
@@ -15,6 +16,7 @@ ApplicationWindow{
     width: Qt.platform.os==='android'?Screen.width:500
     height: Qt.platform.os==='android'?Screen.height:900
     color: '#333'
+    property string moduleName: 'unik-tts-example'
     property int fs: Qt.platform.os==='android'?app.width*0.04:app.width*0.03
     property color c1
     property color c2
@@ -26,13 +28,13 @@ ApplicationWindow{
         Qt.quit()
     }
 
-    UnikSettings{
+    USettings{
         id: unikSettings
         property color c1
         property color c2
         property color c3
         property color c4
-        //url: './cfg.json'
+        url: './cfg.json'
         Component.onCompleted: {
             unikSettings.currentNumColor=0
             var tcs=unikSettings.defaultColors.split('|')
@@ -46,6 +48,7 @@ ApplicationWindow{
 
     Settings{
         id:appSettings
+        fileName: pws+'/'+app.moduleName+'/cfg'
         category: 'UnikTtsExample'
         property int engine
         property int voice
@@ -425,6 +428,18 @@ ApplicationWindow{
         sbVolume.value = appSettings.volume
         sbRate.value = appSettings.rate
         sbPitch.value = appSettings.pitch
+
+        let m0=(''+ttsLocales).split(',')
+        let index=0
+        for(var i=0;i<m0.length;i++){
+            console.log('Language: '+m0[i])
+            if((''+m0[i]).indexOf('Spanish (Spain)')>=0){
+                index=i
+                break
+            }
+        }
+        unik.ttsLanguageSelected(index)
+        unik.speak('Aplicación de ejemplo iniciada.')
     }
     function speak(t){
         textSpeaked.text=t
